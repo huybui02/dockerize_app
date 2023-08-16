@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"log"
+	// "log"
 
 	"gorm.io/driver/mysql"
 
@@ -10,20 +10,24 @@ import (
 )
 
 const (
-	host     = "mysql"
-	port     = 3306
-	user     = "myuser"
-	password = "mypassword"
-	dbName   = "mydatabase"
+	DB_USERNAME = "myuser"
+	DB_PASSWORD = "mypassword"
+	DB_NAME = "mydatabase"
+	DB_HOST = "mysql"
+	DB_PORT = "3306"
 )
 
-
 func DatabaseMySqlConnection() *gorm.DB {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, port, dbName)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatal(err)
-	}
 
+	var err error
+	dsn := DB_USERNAME +":"+ DB_PASSWORD +"@tcp"+ "(" + DB_HOST + ":" + DB_PORT +")/" + DB_NAME + "?" + "parseTime=true&loc=Local"
+	
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+ 
+	if err != nil {
+	   fmt.Println("Error connecting to database : error=%v", err)
+	   return nil
+	}
+ 
 	return db
 }
