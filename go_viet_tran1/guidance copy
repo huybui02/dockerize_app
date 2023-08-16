@@ -1,0 +1,72 @@
+docker-compose up -d
+docker-compose down
+docker-compose up --build
+go run main.go
+mysql -u myuser -p
+mypassword
+//----------
+go mod init mongo
+go get go.mongodb.org/mongo-driver/mongo
+
+
+
+add to github
+
+echo "# gocloth" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/banhcuonbathanh/gocloth.git
+git push -u origin main
+
+gin -p 8000 run main.go
+
+"gorm.io/driver/mysql"
+"gorm.io/gorm"
+mysql -h 127.0.0.1 -P 3306 -u root -p
+
+
+docker ps
+docker-compose up --build
+docker run --name servername -e MYSQL_ROOT_PASSWORD=12345 -e MYSQL_USER=root -d -p 3306:3306 mysql:latest
+
+
+// mysql
+mysql -u myuser -p
+
+CREATE DATABASE testdatabse;
+EXIT;
+SHOW DATABASES;
+CREATE TABLE employees (
+id INT AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+date_joined DATE NOT NULL
+);
+SHOW TABLES;
+
+mysql -u root -p
+
+brew services stop mysql
+brew uninstall mysql
+sudo rm -rf /usr/local/var/mysql
+
+
+// my sql
+
+USE mydatabase;
+
+CREATE TABLE todo_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR(255),
+    title VARCHAR(255),
+    status VARCHAR(50),
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+DELETE FROM todo_items WHERE condition;
+DROP TABLE todo_items;
+SELECT * FROM tags;

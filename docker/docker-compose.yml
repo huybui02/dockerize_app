@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ../go_viet_tran1
+      dockerfile: Dockerfile
+    container_name: go_app
+    restart: unless-stopped
+    environment:
+      - DB_PORT=3306
+      - DB_HOST=mysql
+
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+  mysql:
+    image: mysql:8.1.0
+    container_name: my-mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: myrootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge
