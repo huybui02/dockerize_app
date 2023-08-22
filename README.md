@@ -18,3 +18,31 @@ docker compose up -d
 
 ## Check
 Access to `http://localhost/` to check your app.
+
+
+<br>
+<br>
+
+# How To run local dev
+## Make sure docker-compose deployment is down
+```
+cd deployment
+docker compose down
+```
+## Run dev env
+```
+cd deployment
+docker compose -f docker-compose.local.dev.yml up -d
+```
+## Run FE
+```
+cd deployment
+make run-fe
+```
+## Run BE
+```
+cd deployment
+make run-be
+```
+## STOP
+Press  ` Ctrl + C ` for stop

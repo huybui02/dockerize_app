@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  app:
+    image: backend:0.0.1
+    container_name: go_app
+    restart: unless-stopped
+    environment:
+      - DB_PORT=3306
+      - DB_HOST=mysql
+    ports:
+      - "8080:8080"
+    entrypoint: tail -F non_exist_file
+    volumes:
+      - ../go_viet_tran1:/app
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  nextjs:
+    image: frontend:0.0.1
+    container_name: nextjs_app
+    entrypoint: tail -F non_exist_file
+    ports:
+      - "3000:8080"
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:1.23.3
+    container_name: nginx_reverse_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+      - nextjs
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.1.0
+    container_name: my-mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: myrootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge
