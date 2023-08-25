@@ -23,7 +23,7 @@ services:
     container_name: nextjs_app
     entrypoint: tail -F non_exist_file
     ports:
-      - "3000:8080"
+      - "3000:3000"
     networks:
       - app-network
 

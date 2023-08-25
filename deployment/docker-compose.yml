@@ -19,7 +19,7 @@ services:
     image: frontend:0.0.1
     container_name: nextjs_app
     ports:
-      - "3000:8080"
+      - "3000:3000"
     networks:
       - app-network
 
